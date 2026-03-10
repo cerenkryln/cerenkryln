@@ -4,7 +4,7 @@ const sections = {
         <h1>Merhaba, Ben <span class="accent-text">Ceren Karayılan</span></h1>
         
         <div class="photo-wrapper">
-            <img src="kendim.png" alt="Ceren" class="hero-photo"> 
+            <img src="kendim.jpeg" alt="Ceren" class="hero-photo"> 
         </div>
 
         <p class="subtitle">Siber Güvenlik Araştırmacısı & Web Geliştirici</p>
@@ -235,3 +235,4 @@ function showSection(id) {
 
 
 window.onload = () => showSection('home');
+
