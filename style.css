@@ -1,0 +1,579 @@
+:root {
+    --bg: #050505;
+    --glass: rgba(255, 255, 255, 0.03);
+    --border: rgba(255, 255, 255, 0.08);
+    --accent: #c3a1ff;
+    --text: #f5f5f5;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.7;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.bg-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 50%, #1a1025 0%, #050505 100%);
+    z-index: -1;
+}
+
+nav {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 20px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--accent);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li {
+    margin-left: 25px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text);
+    /* Yazı boyutunu belirgin şekilde büyüttük */
+    font-size: 1.1rem;
+    font-weight: 500;
+    opacity: 0.8;
+    /* Geçiş efektinin akıcı olması için */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    display: inline-block;
+    padding: 5px 10px;
+}
+
+.nav-links a:hover {
+    opacity: 1;
+    color: var(--accent);
+    /* Yazı rengi mor vurgu rengine döner */
+    /* Yazının fiziksel olarak büyümesi */
+    transform: scale(1.2);
+    /* Parlama efekti (Glow) */
+    text-shadow: 0 0 15px var(--accent), 0 0 25px rgba(195, 161, 255, 0.5);
+}
+
+.nav-links a.active {
+    opacity: 1;
+    color: var(--accent);
+    font-weight: 600;
+    text-shadow: 0 0 10px rgba(195, 161, 255, 0.3);
+    border-bottom: 2px solid var(--accent);
+}
+
+.container {
+    max-width: 950px;
+    margin: 120px auto;
+    padding: 0 20px;
+}
+
+/* GENEL KART YAPISI */
+.glass-card {
+    background: var(--glass);
+    backdrop-filter: blur(30px);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 50px;
+    animation: slideUp 0.6s ease;
+}
+
+/* FOTOĞRAF ORTALAMA DÜZENLEMESİ (HAKKIMDA SAYFASI) */
+.centered-layout {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+.main-photo {
+    width: 250px;
+    /* Görseldeki boyuta göre ideal */
+    height: 250px;
+    object-fit: cover;
+    border-radius: 40px;
+    /* Baloncuk efekti için yumuşak köşeler */
+    border: 3px solid var(--accent);
+    padding: 15px;
+    /* Fotoğraf ile çerçeve arasındaki boşluk */
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* METİN DÜZENLEMELERİ */
+.left-align {
+    text-align: left !important;
+    width: 100%;
+}
+
+.bio-section {
+    margin-top: 25px;
+}
+
+.bio-section h3 {
+    font-size: 1.25rem;
+    color: var(--accent);
+    margin-bottom: 10px;
+}
+
+.bio-section p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #e0e0e0;
+}
+
+/* DİĞER BİLEŞENLER */
+.section-title {
+    font-size: 1.3rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 30px;
+}
+
+.badge {
+    background: var(--accent);
+    color: #000;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.item-cat {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 20px;
+}
+
+.btn {
+    background: var(--accent);
+    color: #000;
+    padding: 15px 35px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    box-shadow: 0 0 20px var(--accent);
+}
+
+.page-footer {
+    width: 100%;
+    text-align: center;
+    padding: 40px 0;
+    margin-top: auto;
+}
+
+.page-footer p {
+    font-size: 0.8rem;
+    letter-spacing: 4px;
+    color: rgba(255, 255, 255, 0.4);
+    text-transform: uppercase;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Badge'leri Sağ Köşeye Alan Header Yapısı */
+.item-header {
+    display: flex;
+    justify-content: space-between;
+    /* Başlığı sola, badge'i sağa yaslar */
+    align-items: center;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.badge {
+    background: var(--accent);
+    color: #000;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    white-space: nowrap;
+    /* Yazının taşmasını önler */
+    box-shadow: 0 4px 10px rgba(195, 161, 255, 0.3);
+}
+
+/* Kart İçeriği Düzenlemesi */
+.item-cat {
+    position: relative;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 20px;
+    text-align: left !important;
+    /* Yazılar sola dayalı */
+}
+
+
+/* İLETİŞİM FORMU */
+
+.pro-form {
+    display: flex;
+    flex-direction: column;
+    /* Tüm elemanları alt alta dizer */
+    gap: 20px;
+    /* Elemanlar arasındaki boşluğu artırır */
+    max-width: 600px;
+    /* Formun çok yayılmasını engeller */
+    margin: 0 auto;
+
+}
+
+.pro-form input {
+    width: 100%;
+    padding: 18px;
+    /* Kutuları daha büyük ve dolgun yapar */
+    font-size: 1.1rem;
+    /* Yazı boyutunu büyütür */
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    flex-direction: column;
+    color: white;
+}
+
+.form-bottom {
+    display: flex;
+    flex-direction: column;
+    /* Mesaj kutusu ve butonu da alt alta alır */
+    gap: 20px;
+}
+
+.pro-form textarea {
+    width: 100%;
+    padding: 18px;
+    font-size: 1.1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    color: white;
+    resize: vertical;
+}
+
+.send-btn {
+    width: 100%;
+    /* Butonu form genişliğine yayar */
+    padding: 18px;
+    font-size: 1.2rem;
+    /* Buton yazısını büyütür */
+    font-weight: 600;
+    background: var(--accent);
+    color: #000;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.send-btn:hover {
+    box-shadow: 0 0 25px var(--accent);
+    transform: translateY(-3px);
+}
+
+/* Mobil uyumluluk için */
+@media (max-width: 600px) {
+
+    .form-row,
+    .form-bottom {
+        flex-direction: column;
+    }
+}
+
+/* Liste işaretlerini tamamen kaldıran ve boşluğu düzenleyen stil */
+.clean-list {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 15px;
+}
+
+.clean-list li {
+    font-size: 1.05rem;
+    color: #ccc;
+    margin-bottom: 15px;
+    border-left: 2px solid var(--accent);
+    /* Ok yerine şık bir yan çizgi ekledik */
+    padding-left: 15px;
+}
+
+.clean-list li strong {
+    color: var(--accent);
+    display: block;
+    /* Başlıkları ayrı satıra alarak vurgular */
+}
+
+/* GİRİŞ KARTI İÇİNDEKİ FOTOĞRAF DÜZENİ */
+.photo-wrapper {
+    display: flex;
+    justify-content: center;
+    /* Yatayda tam ortalar */
+    align-items: center;
+    margin: 30px auto;
+    padding: 20px;
+    /* Kenarlardan senin istediğin o boşluk */
+    width: 100%;
+}
+
+.hero-photo {
+    width: 330px;
+    /* Boyutunu kibarlaştırdık */
+    height: 330px;
+    object-fit: cover;
+    border-radius: 30px;
+    /* Yumuşak baloncuk köşeleri */
+    border: 2px solid var(--accent);
+    /* İkonik mor çerçeve */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+/* CAN KODER LOGO DÜZENİ */
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.nav-logo {
+    height: 45px;
+    /* İstediğin o "biraz küçük" boyut */
+    width: auto;
+    border-radius: 8px;
+    /* Logonun keskinliğini yumuşatmak için */
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.nav-logo:hover {
+    transform: scale(1.08);
+    /* Üzerine gelince hafif büyüme efekti */
+}
+
+/* Navbar hizalamasını korumak için */
+nav {
+    padding: 10px 5%;
+    /* Logoya göre dikey boşluğu dengeledik */
+}
+
+/* İLETİŞİM TABLOSU STİLLERİ */
+.contact-table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.contact-table td {
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--border);
+    font-size: 1.05rem;
+    color: #e0e0e0;
+}
+
+.contact-table tr:last-child td {
+    border-bottom: none;
+}
+
+.contact-table td:first-child {
+    font-weight: 600;
+    color: var(--accent);
+    /* Başlık kısımları mor parlak */
+    width: 30%;
+}
+
+.contact-table a {
+    color: #fff;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.contact-table a:hover {
+    color: var(--accent);
+    text-shadow: 0 0 10px var(--accent);
+}
+
+/* Tablo içindeki ikonlar için */
+.contact-table i {
+    margin-right: 10px;
+    font-size: 0.9rem;
+}
+
+/* TABLO ÇİZGİLERİNİ BELİRGİNLEŞTİREN TASARIM */
+.info-table {
+    width: 100%;
+    margin-top: 15px;
+    border-collapse: separate;
+    /* Köşe yuvarlama için separate kullanıyoruz */
+    border-spacing: 0;
+    border: 1px solid var(--border);
+    /* Dış çerçeve */
+    border-radius: 15px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.info-table td {
+    padding: 18px 25px;
+    /* SATIRLAR ARASINDAKİ ÇİZGİ */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    /* SÜTUNLAR ARASINDAKİ ÇİZGİ */
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 1.1rem;
+    color: #e0e0e0;
+}
+
+/* En sağdaki sütunun sağ çizgisini kaldır */
+.info-table td:last-child {
+    border-right: none;
+}
+
+/* En alttaki satırın alt çizgisini kaldır */
+.info-table tr:last-child td {
+    border-bottom: none;
+}
+
+/* Başlık sütununu (Sol taraf) renklendir ve çizgiyi belirgin tut */
+.info-table td:first-child {
+    background: rgba(195, 161, 255, 0.05);
+    /* Çok hafif mor zemin vurgusu */
+    color: var(--accent);
+    font-weight: 600;
+    width: 35%;
+}
+
+.table-link {
+    color: #fff;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.table-link:hover {
+    color: var(--accent);
+    text-shadow: 0 0 10px var(--accent);
+}
+
+/* MOBİL UYUMLULUK AYARLARI */
+@media (max-width: 768px) {
+
+    /* 1. Tablo Düzenlemesi: Yan yana olan verileri alt alta alır */
+    .info-table,
+    .info-table tbody,
+    .info-table tr,
+    .info-table td {
+        display: block;
+        width: 100% !important;
+    }
+
+    .info-table td {
+        border-right: none !important;
+        padding: 12px 20px !important;
+    }
+
+    /* Başlık kısımlarını (Üniversite, Lise vb.) daha belirgin yapar */
+    .info-table td:first-child {
+        background: rgba(195, 161, 255, 0.1);
+        font-size: 0.9rem;
+        padding-bottom: 5px !important;
+        border-bottom: none !important;
+    }
+
+    /* İçerik kısımları (Batman Üni vb.) */
+    .info-table td:last-child {
+        padding-top: 0 !important;
+        margin-bottom: 10px;
+        font-size: 1.05rem;
+    }
+
+    /* 2. Genel Konteyner ve Kart Ayarları */
+    .container {
+        margin: 100px auto 20px auto !important;
+        padding: 0 15px !important;
+    }
+
+    .glass-card {
+        padding: 30px 20px !important;
+    }
+
+    /* 3. Fotoğraf Boyutlarını Küçültme */
+    .main-photo {
+        width: 180px !important;
+        height: 180px !important;
+    }
+
+    .hero-photo {
+        width: 140px !important;
+        height: 140px !important;
+    }
+
+    /* 4. Başlık Boyutlarını Küçültme */
+    h1 {
+        font-size: 2.2rem !important;
+    }
+
+    .nav-links {
+        display: none;
+        /* İsteğe bağlı: Mobilde menüyü gizleyebilir veya hamburger menü yapabilirsin */
+    }
+}
